@@ -3,6 +3,7 @@ import express from "express";
 import chalk from "chalk";
 import cors from "cors";
 import connectDB from "./config/db.js";
+import {notFound, errorHandler} from "./middlewares/errorMiddleware.js"
 
 
 dotenv.config(); // For Env
@@ -16,6 +17,11 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.send("Kissaaan API is running");
 });
+
+
+// Error Middleware
+app.use(notFound);
+app.use(errorHandler);
 
 
 // ENV Setup
